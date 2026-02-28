@@ -1,0 +1,566 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Spoke & Wrench Bike Repair — Book a Service</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body class="bg-body-tertiary">
+  <a class="visually-hidden-focusable" href="#main">Skip to booking</a>
+
+  <nav class="navbar navbar-expand bg-white border-bottom fixed-top">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center gap-2" href="#main">
+        <div class="brand-mark shadow-sm"><i class="bi bi-bicycle"></i></div>
+        Spoke &amp; Wrench
+      </a>
+      <div class="collapse navbar-collapse">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
+          <li class="nav-item"><a class="nav-link" href="#datetime">Date &amp; Time</a></li>
+          <li class="nav-item"><a class="nav-link" href="#experts">Experts</a></li>
+          <li class="nav-item"><a class="nav-link" href="#payment">Payment</a></li>
+          <li class="nav-item"><a class="nav-link" href="#info">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div style="height:64px"></div>
+
+  <header class="site-hero border-bottom">
+    <div class="container py-4">
+      <div class="d-flex align-items-center gap-3">
+        <div class="brand-mark shadow-sm">
+          <i class="bi bi-bicycle fs-3"></i>
+        </div>
+        <div>
+          <h1 class="h3 mb-1">Spoke &amp; Wrench Bike Repair</h1>
+          <p class="mb-0 text-secondary">Fast fixes. Clear pricing. Friendly mechanics.</p>
+        </div>
+      </div>
+
+      <div class="row g-3 mt-3">
+        <div class="col-12 col-lg-8">
+          <div class="alert alert-light border mb-0 d-flex gap-3 align-items-start" role="note">
+            <i class="bi bi-info-circle mt-1"></i>
+            <div>
+              <div class="fw-semibold">Where am I?</div>
+              <div class="small text-secondary">
+                You’re booking a service at <span class="fw-semibold">Spoke &amp; Wrench</span>. Choose a service, pick a time, enter your info, and confirm.
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-lg-4">
+          <div class="card border shadow-sm h-100">
+            <div class="card-body">
+              <div class="d-flex align-items-start justify-content-between gap-3">
+                <div>
+                  <div class="fw-semibold"><i class="bi bi-geo-alt"></i> Visit us</div>
+                  <div class="small text-secondary">123 Laurier Ave W, Ottawa, ON</div>
+                  <div class="small text-secondary">Mon–Fri 9:00–18:00 · Sat 10:00–16:00</div>
+                </div>
+                <span class="badge text-bg-success align-self-start">Open</span>
+              </div>
+
+              <hr class="my-3" />
+              <div class="small">
+                <div class="d-flex gap-2 align-items-center mb-1">
+                  <i class="bi bi-telephone"></i>
+                  <span>(613) 555‑0199</span>
+                </div>
+                <div class="d-flex gap-2 align-items-center">
+                  <i class="bi bi-envelope"></i>
+                  <span>hello@spokeandwrench.ca</span>
+                </div>
+              </div>
+
+              <a class="btn btn-outline-primary w-100 mt-3" href="#services" aria-label="Jump to services">
+                <i class="bi bi-arrow-down-circle"></i> Start booking
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main id="main" class="container my-4">
+
+    <div class="card border shadow-sm mb-4">
+      <div class="card-body">
+        <div class="d-flex flex-wrap align-items-center justify-content-between gap-2">
+          <div class="fw-semibold">
+            <i class="bi bi-signpost-split"></i> Booking steps
+          </div>
+
+          <div class="stepper" aria-label="Booking progress">
+            <span class="step active" id="step1Dot"><span class="step-num">1</span> Service</span>
+            <span class="step" id="step2Dot"><span class="step-num">2</span> Date &amp; time</span>
+            <span class="step" id="step3Dot"><span class="step-num">3</span> Your info</span>
+            <span class="step" id="step4Dot"><span class="step-num">4</span> Confirm</span>
+          </div>
+        </div>
+
+        <hr class="my-3" />
+
+        <div class="row g-3 align-items-stretch">
+          <div class="col-12 col-lg-8">
+            <div class="p-3 rounded-3 bg-light border h-100">
+              <div class="d-flex gap-2 align-items-start">
+                <i class="bi bi-check2-circle text-success mt-1" aria-hidden="true"></i>
+                <div>
+                  <div class="fw-semibold">Your selection</div>
+                  <div class="text-secondary small mb-0" id="summaryText">
+                    Pick a service to get started.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12 col-lg-4">
+            <div class="p-3 rounded-3 bg-white border h-100">
+              <div class="fw-semibold mb-1"><i class="bi bi-shield-check"></i> Safety note</div>
+              <div class="small text-secondary mb-0">
+                If your brakes feel unsafe or your wheel wobbles, choose <span class="fw-semibold">Brake Inspection</span> or <span class="fw-semibold">Safety Check</span>.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <section id="services" class="mb-4">
+      <div class="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-2">
+        <h2 class="h4 mb-0"><i class="bi bi-tools me-2"></i>1) Choose a service</h2>
+        <span class="badge text-bg-primary-subtle text-primary border border-primary-subtle">
+          Clear pricing · No surprises
+        </span>
+      </div>
+
+      <p class="text-secondary small mb-3">
+        Tap a card to select. Photos show what the service covers (mapping).
+      </p>
+
+      <div class="row g-3">
+
+        <div class="col-12 col-md-6 col-lg-4">
+          <label class="service-card card shadow-sm h-100" for="svcTune">
+            <div class="ratio ratio-4x3">
+              <img class="object-fit-cover rounded-top" src="images/service-tune-up.jpg"
+                   alt="A mechanic adjusting a bike drivetrain" />
+            </div>
+            <div class="card-body">
+              <div class="d-flex justify-content-between align-items-start gap-2">
+                <div>
+                  <div class="fw-semibold">Basic Tune‑Up</div>
+                  <div class="small text-secondary">Gears + brakes adjustment</div>
+                </div>
+                <span class="badge text-bg-light border">$49</span>
+              </div>
+
+              <ul class="small text-secondary mt-3 mb-0">
+                <li>Brake &amp; derailleur adjustment</li>
+                <li>Chain lube &amp; quick safety check</li>
+                <li>15–25 minutes</li>
+              </ul>
+            </div>
+            <div class="card-footer bg-white border-0 pt-0 pb-3 px-3">
+              <div class="d-flex align-items-center justify-content-between">
+                <div class="form-check m-0">
+                  <input class="form-check-input" type="radio" name="service" id="svcTune"
+                         data-name="Basic Tune‑Up" data-price="49" data-duration="20" />
+                  <span class="form-check-label ms-2">Select</span>
+                </div>
+                <span class="text-secondary small"><i class="bi bi-clock"></i> ~20 min</span>
+              </div>
+            </div>
+          </label>
+        </div>
+
+        <div class="col-12 col-md-6 col-lg-4">
+          <label class="service-card card shadow-sm h-100" for="svcFlat">
+            <div class="ratio ratio-4x3">
+              <img class="object-fit-cover rounded-top" src="images/service-flat-tire.jpg"
+                   alt="Close-up of a bike tire and wheel being repaired" />
+            </div>
+            <div class="card-body">
+              <div class="d-flex justify-content-between align-items-start gap-2">
+                <div>
+                  <div class="fw-semibold">Flat Tire Fix</div>
+                  <div class="small text-secondary">Tube replace / patch</div>
+                </div>
+                <span class="badge text-bg-light border">$25</span>
+              </div>
+
+              <ul class="small text-secondary mt-3 mb-0">
+                <li>Inspect tire &amp; rim tape</li>
+                <li>Patch or replace tube</li>
+                <li>10–20 minutes</li>
+              </ul>
+            </div>
+            <div class="card-footer bg-white border-0 pt-0 pb-3 px-3">
+              <div class="d-flex align-items-center justify-content-between">
+                <div class="form-check m-0">
+                  <input class="form-check-input" type="radio" name="service" id="svcFlat"
+                         data-name="Flat Tire Fix" data-price="25" data-duration="15" />
+                  <span class="form-check-label ms-2">Select</span>
+                </div>
+                <span class="text-secondary small"><i class="bi bi-clock"></i> ~15 min</span>
+              </div>
+            </div>
+          </label>
+        </div>
+
+        <div class="col-12 col-md-6 col-lg-4">
+          <label class="service-card card shadow-sm h-100" for="svcBrakes">
+            <div class="ratio ratio-4x3">
+              <img class="object-fit-cover rounded-top" src="images/service-brake-inspection.jpg"
+                   alt="Brake caliper and wheel on a bicycle" />
+            </div>
+            <div class="card-body">
+              <div class="d-flex justify-content-between align-items-start gap-2">
+                <div>
+                  <div class="fw-semibold">Brake Inspection</div>
+                  <div class="small text-secondary">Pads + alignment</div>
+                </div>
+                <span class="badge text-bg-light border">$35</span>
+              </div>
+
+              <ul class="small text-secondary mt-3 mb-0">
+                <li>Pad wear check &amp; alignment</li>
+                <li>Cable tension / hydraulic feel</li>
+                <li>15–30 minutes</li>
+              </ul>
+            </div>
+            <div class="card-footer bg-white border-0 pt-0 pb-3 px-3">
+              <div class="d-flex align-items-center justify-content-between">
+                <div class="form-check m-0">
+                  <input class="form-check-input" type="radio" name="service" id="svcBrakes"
+                         data-name="Brake Inspection" data-price="35" data-duration="25" />
+                  <span class="form-check-label ms-2">Select</span>
+                </div>
+                <span class="text-secondary small"><i class="bi bi-clock"></i> ~25 min</span>
+              </div>
+            </div>
+          </label>
+        </div>
+
+        <div class="col-12 col-md-6 col-lg-4">
+          <label class="service-card card shadow-sm h-100" for="svcSafety">
+            <div class="ratio ratio-4x3">
+              <img class="object-fit-cover rounded-top" src="images/service-safety-check.jpg"
+                   alt="Bike being checked on a repair stand" />
+            </div>
+            <div class="card-body">
+              <div class="d-flex justify-content-between align-items-start gap-2">
+                <div>
+                  <div class="fw-semibold">Safety Check</div>
+                  <div class="small text-secondary">Quick pre-ride check</div>
+                </div>
+                <span class="badge text-bg-light border">$19</span>
+              </div>
+
+              <ul class="small text-secondary mt-3 mb-0">
+                <li>Bolts, wheels, steering, brakes</li>
+                <li>Pressure check (no air cost)</li>
+                <li>8–12 minutes</li>
+              </ul>
+            </div>
+            <div class="card-footer bg-white border-0 pt-0 pb-3 px-3">
+              <div class="d-flex align-items-center justify-content-between">
+                <div class="form-check m-0">
+                  <input class="form-check-input" type="radio" name="service" id="svcSafety"
+                         data-name="Safety Check" data-price="19" data-duration="10" />
+                  <span class="form-check-label ms-2">Select</span>
+                </div>
+                <span class="text-secondary small"><i class="bi bi-clock"></i> ~10 min</span>
+              </div>
+            </div>
+          </label>
+        </div>
+
+        <div class="col-12 col-lg-8">
+          <div class="card border shadow-sm h-100">
+            <div class="card-body">
+              <h3 class="h5 mb-2"><i class="bi bi-person-lines-fill me-2"></i>Meet the mechanics</h3>
+              <p class="text-secondary small mb-3">
+                People like to know who’s doing the work (visibility + trust).
+              </p>
+
+              <div id="experts" class="row g-3">
+                <div class="col-12 col-md-6">
+                  <label class="d-flex gap-3 align-items-center p-2 rounded-3 bg-light border expert-card" for="proSam">
+                    <input class="form-check-input" type="radio" name="professional" id="proSam"
+                           data-name="Sam P." data-offdays="2" />
+                    <img class="avatar" src="images/mechanic-sam-p.png" alt="Avatar of Sam P." />
+                    <div>
+                      <div class="fw-semibold">Sam P.</div>
+                      <div class="small text-secondary">Lead mechanic · 8 years experience</div>
+                      <div class="small text-secondary"><i class="bi bi-star-fill"></i> Wheel truing &amp; brakes</div>
+                    </div>
+                  </label>
+                </div>
+
+                <div class="col-12 col-md-6">
+                  <label class="d-flex gap-3 align-items-center p-2 rounded-3 bg-light border expert-card" for="proMina">
+                    <input class="form-check-input" type="radio" name="professional" id="proMina"
+                           data-name="Mina K." data-offdays="3" />
+                    <img class="avatar" src="images/mechanic-mina-k.png" alt="Avatar of Mina K." />
+                    <div>
+                      <div class="fw-semibold">Mina K.</div>
+                      <div class="small text-secondary">Service tech · 5 years experience</div>
+                      <div class="small text-secondary"><i class="bi bi-star-fill"></i> Drivetrain tuning</div>
+                    </div>
+                  </label>
+                </div>
+              </div>
+
+              <div class="mt-3 small text-secondary">
+                <i class="bi bi-lightbulb"></i> Tip: Not sure what you need? Choose <span class="fw-semibold">Safety Check</span> and we’ll recommend next steps.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- date/time -->
+    <section id="datetime" class="mb-4">
+      <h2 class="h4 mb-2">2) Pick a date and time</h2>
+      <p class="text-secondary small mb-3">
+        Only show the next step when you’re ready.
+      </p>
+
+      <div class="card border shadow-sm">
+        <div class="card-body">
+          <div class="row g-3">
+            <div class="col-12 col-md-6">
+              <label for="dateInput" class="form-label fw-semibold">
+                <i class="bi bi-calendar-event"></i> Date
+              </label>
+              <input type="date" class="form-control" id="dateInput" />
+              <div class="form-text">Choose any day within the next 30 days.</div>
+            </div>
+
+            <div class="col-12 col-md-6">
+              <label for="timeSelect" class="form-label fw-semibold">
+                <i class="bi bi-clock"></i> Time
+              </label>
+              <select class="form-select" id="timeSelect" aria-label="Select appointment time">
+                <option value="" selected>Choose a time…</option>
+                <optgroup label="Morning">
+                  <option>09:00</option>
+                  <option>10:00</option>
+                  <option>11:00</option>
+                </optgroup>
+                <optgroup label="Afternoon">
+                  <option>13:00</option>
+                  <option>14:00</option>
+                  <option>15:00</option>
+                  <option>16:00</option>
+                </optgroup>
+              </select>
+              <div class="form-text">Typical appointments run ~10–25 minutes.</div>
+            </div>
+          </div>
+
+          <hr class="my-3" />
+
+          <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+            <a class="btn btn-outline-secondary" href="#services">
+              <i class="bi bi-arrow-up"></i> Back to services
+            </a>
+            <button class="btn btn-primary" id="toInfoBtn" type="button" disabled>
+              Next: your info <i class="bi bi-arrow-right"></i>
+            </button>
+          </div>
+          <div class="small text-secondary mt-2" id="toInfoHint">
+            Select a service, date, and time to unlock the next step.
+          </div>
+        </div>
+      </div>
+    </section>
+    </section>
+
+    <!-- payment -->
+    <section id="payment" class="mb-4">
+      <h2 class="h4 mb-2"><i class="bi bi-credit-card"></i> Payment</h2>
+      <p class="text-secondary small mb-3">We require a card to reserve your slot. We do not store card details — this is a demo placeholder.</p>
+
+      <div class="card border shadow-sm">
+        <div class="card-body">
+          <div class="row g-3">
+            <div class="col-12 col-md-6">
+              <label for="cardNumber" class="form-label fw-semibold">Card number
+                <span class="text-secondary small ms-1" data-bs-toggle="tooltip" data-bs-title="Numbers only; spaces will be ignored">
+                  <i class="bi bi-question-circle"></i>
+                </span>
+              </label>
+              <input type="text" class="form-control" id="cardNumber" inputmode="numeric" placeholder="•••• •••• •••• ••••" />
+              <div class="invalid-feedback">Enter a valid card number (13–19 digits).</div>
+            </div>
+
+            <div class="col-6 col-md-3">
+              <label for="cardExpiry" class="form-label fw-semibold">Expiry (MM/YY)</label>
+              <input type="text" class="form-control" id="cardExpiry" placeholder="MM/YY" />
+              <div class="invalid-feedback">Enter a valid expiry date.</div>
+            </div>
+
+            <div class="col-6 col-md-3">
+              <label for="cardCvc" class="form-label fw-semibold">CVC</label>
+              <input type="text" class="form-control" id="cardCvc" placeholder="CVC" inputmode="numeric" />
+              <div class="invalid-feedback">CVC must be 3 or 4 digits.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- contact info -->
+    <section id="info" class="mb-4">
+      <h2 class="h4 mb-2">3) Your contact info</h2>
+      <p class="text-secondary small mb-3">We only use this to confirm your booking.</p>
+
+      <div class="card border shadow-sm">
+        <div class="card-body">
+          <form id="bookingForm" novalidate>
+            <div class="row g-3">
+              <div class="col-12 col-md-6">
+                <label for="nameInput" class="form-label fw-semibold">Full name</label>
+                <input type="text" class="form-control" id="nameInput" placeholder="e.g., Paul Guzman" required />
+                <div class="invalid-feedback">Please enter your name.</div>
+              </div>
+
+              <div class="col-12 col-md-6">
+                <label for="phoneInput" class="form-label fw-semibold">Phone</label>
+                <input type="tel" class="form-control" id="phoneInput" placeholder="e.g., 613-555-0123"
+                       inputmode="tel" required />
+                <div class="invalid-feedback">Please enter a phone number.</div>
+              </div>
+
+              <div class="col-12">
+                <label for="emailInput" class="form-label fw-semibold">Email</label>
+                <input type="email" class="form-control" id="emailInput" placeholder="e.g., you@example.com" required />
+                <div class="invalid-feedback">Please enter a valid email.</div>
+              </div>
+
+              <div class="col-12">
+                <label for="notesInput" class="form-label fw-semibold">
+                  Notes (optional)
+                  <span class="text-secondary fw-normal small ms-1" data-bs-toggle="tooltip" data-bs-title="Example: squeaky brakes, shifting skips, rear tire keeps going flat">
+                    <i class="bi bi-question-circle"></i>
+                  </span>
+                </label>
+                <textarea class="form-control" id="notesInput" rows="3" placeholder="Anything we should know?"></textarea>
+              </div>
+
+              <div class="col-12">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" id="consentCheck" required />
+                  <label class="form-check-label" for="consentCheck">
+                    I agree to receive booking updates by email/text.
+                  </label>
+                  <div class="invalid-feedback">Please confirm to proceed.</div>
+                </div>
+              </div>
+            </div>
+
+            <hr class="my-3" />
+
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+              <a class="btn btn-outline-secondary" href="#datetime">
+                <i class="bi bi-arrow-up"></i> Back to date &amp; time
+              </a>
+              <button class="btn btn-success" id="confirmBtn" type="submit" disabled>
+                Confirm booking <i class="bi bi-check2"></i>
+              </button>
+            </div>
+
+            <div class="small text-secondary mt-2" id="confirmHint">
+              Fill the required fields to enable confirmation.
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <section id="confirmation" class="mb-5">
+      <h2 class="h4 mb-2">4) Confirmation</h2>
+      <p class="text-secondary small mb-3">
+        You’ll see a confirmation card after you submit.
+      </p>
+
+      <div class="card border shadow-sm">
+        <div class="card-body">
+          <div id="confirmEmpty" class="text-secondary">
+            <i class="bi bi-hourglass-split"></i>
+            No booking yet — complete the steps above.
+          </div>
+
+          <div id="confirmCard" class="d-none">
+            <div class="d-flex align-items-start gap-3">
+              <div class="rounded-circle bg-success-subtle text-success d-flex align-items-center justify-content-center"
+                   style="width:44px;height:44px;">
+                <i class="bi bi-check2 fs-4" aria-hidden="true"></i>
+              </div>
+              <div class="flex-grow-1">
+                <div class="fw-semibold fs-5">Booked!</div>
+                <div class="text-secondary" id="confirmText"></div>
+
+                <div class="mt-3 p-3 rounded-3 bg-light border">
+                  <div class="small text-secondary mb-1">Reference</div>
+                  <div class="fw-semibold" id="refCode">—</div>
+                </div>
+
+                <div class="mt-3 d-grid gap-2 d-md-flex">
+                  <button class="btn btn-outline-primary" type="button" id="newBookingBtn">
+                    Make another booking
+                  </button>
+                  <button class="btn btn-outline-secondary" type="button" onclick="window.print()">
+                    Print
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="border-top bg-white">
+    <div class="container py-4">
+      <div class="row g-3 align-items-center">
+        <div class="col-12 col-md-6">
+          <div class="small text-secondary">
+            © <span id="year"></span> Spoke &amp; Wrench Bike Repair · Built with Bootstrap 5
+          </div>
+        </div>
+        <div class="col-12 col-md-6 text-md-end">
+          <a class="small" href="#main">Back to top</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+          crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+  <script src="main.js"></script>
+</body>
+</html>
